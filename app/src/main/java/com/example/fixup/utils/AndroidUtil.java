@@ -1,6 +1,8 @@
 package com.example.fixup.utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -50,5 +52,25 @@ public class AndroidUtil {
         } else {
             button.setEnabled(false);
         }
+    }
+    public static void showDialog(Context context, String title, String msg, String positiveButtonName, String negativeButtonName,
+                                  DialogInterface.OnClickListener positiveButton,
+                                  DialogInterface.OnClickListener negativeButton) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title)
+                .setMessage(msg)
+                .setPositiveButton(positiveButtonName, positiveButton)
+                .setNegativeButton(negativeButtonName, negativeButton);
+        builder.show();
+    }
+    public static void moveToLoginPage(Context from, Class<?> to) {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(from, to);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                from.startActivity(intent);
+            }
+        }, 1000);
     }
 }

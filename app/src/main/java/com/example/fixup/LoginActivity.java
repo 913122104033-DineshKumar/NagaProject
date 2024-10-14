@@ -94,7 +94,6 @@ public class LoginActivity extends AppCompatActivity {
                             true
                     );
                     String sessionId = response.body().getSessionId();
-                    String email = response.body().getUserEmail();
                     String city = response.body().getUserCity();
                     sessionManagerUtil.createSession(sessionId, email, city);
                     AndroidUtil.showToast(
@@ -106,11 +105,19 @@ public class LoginActivity extends AppCompatActivity {
                             MainActivity.class
                     );
                 } else if (response.code() == 400) {
+                    AndroidUtil.setButtonEnabled(
+                            loginButton,
+                            true
+                    );
                     AndroidUtil.showToast(
                             getApplicationContext(),
                             "User Not Found."
                     );
                 } else {
+                    AndroidUtil.setButtonEnabled(
+                            loginButton,
+                            true
+                    );
                     AndroidUtil.showToast(
                             getApplicationContext(),
                             "Unexpected Error!"

@@ -77,7 +77,7 @@
         android:id="@+id/volunteerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="230dp"
+        android:layout_marginStart="180dp"
         android:backgroundTint="@color/colorAccent"
         android:text="Volunteer"
         android:textSize="18sp"

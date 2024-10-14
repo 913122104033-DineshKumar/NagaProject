@@ -26,7 +26,7 @@
 
         <EditText
             android:id="@+id/profile_user_name"
-            android:layout_width="350dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="Name"
             android:minHeight="48dp"
@@ -36,7 +36,7 @@
 
         <EditText
             android:id="@+id/profile_user_contact_no"
-            android:layout_width="350dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="Contact No"
             android:minHeight="48dp"
@@ -46,7 +46,7 @@
 
         <EditText
             android:id="@+id/profile_user_state"
-            android:layout_width="350dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="State"
             android:minHeight="48dp"
@@ -56,7 +56,7 @@
 
         <EditText
             android:id="@+id/profile_user_city"
-            android:layout_width="350dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="City"
             android:minHeight="48dp"
@@ -74,7 +74,7 @@
                 android:id="@+id/profile_update_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="30dp"
                 android:backgroundTint="@color/colorError"
                 android:text="Cancel"
                 android:textSize="18sp"
@@ -84,7 +84,7 @@
                 android:id="@+id/profile_update_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="40dp"
                 android:backgroundTint="@color/colorSuccess"
                 android:text="Update"
                 android:textSize="18sp"
