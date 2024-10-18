@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/custom_edittext_background"
     android:padding="16dp">
 
     <LinearLayout
@@ -13,6 +14,7 @@
             android:id="@+id/imageView"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:background="@drawable/custom_image_background"
             android:contentDescription="Issue Image"
             android:scaleType="centerCrop" />
 
@@ -77,8 +79,8 @@
         android:id="@+id/volunteerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:backgroundTint="@color/colorAccent"
+        android:layout_marginStart="140dp"
+        android:background="@drawable/custom_button_background"
         android:text="Volunteer"
         android:textSize="18sp"
         android:typeface="serif" />

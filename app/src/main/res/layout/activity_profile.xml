@@ -4,92 +4,166 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="4dp"
     tools:context=".AddPostActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/profile_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:title="Profile" />
+        app:title="Profile"
+        android:background="@drawable/custom_toolbar_background"
+        app:titleTextColor="@color/colorSecondary"
+        app:titleMarginStart="150dp"
+        android:elevation="4dp" />
 
-    <LinearLayout
+    <GridLayout
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/profile_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_toolbar"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <EditText
-            android:id="@+id/profile_user_name"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:minHeight="48dp"
-            android:paddingBottom="8dp"
-            android:textSize="18sp"
-            android:typeface="monospace" />
-
-        <EditText
-            android:id="@+id/profile_user_contact_no"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:hint="Contact No"
-            android:minHeight="48dp"
-            android:paddingBottom="8dp"
-            android:textSize="18sp"
-            android:typeface="monospace" />
-
-        <EditText
-            android:id="@+id/profile_user_state"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:hint="State"
-            android:minHeight="48dp"
-            android:paddingBottom="8dp"
-            android:textSize="18sp"
-            android:typeface="monospace" />
-
-        <EditText
-            android:id="@+id/profile_user_city"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:hint="City"
-            android:minHeight="48dp"
-            android:paddingBottom="8dp"
-            android:textSize="18sp"
-            android:typeface="monospace" />
+        android:rowCount="4"
+        android:columnCount="2"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/profile_user_name"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:background="@drawable/custom_block_edittext_background"
+                android:padding="10dp"
+                android:minHeight="48dp"
+                android:paddingBottom="8dp"
+                android:textSize="18sp"
+                android:typeface="serif"
+                android:enabled="false"/>
 
             <Button
-                android:id="@+id/profile_update_cancel"
+                android:id="@+id/profile_user_name_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="20dp"
+                android:drawableLeft="@drawable/ic_edit"
                 android:backgroundTint="@color/colorError"
-                android:text="Cancel"
+                android:background="@drawable/custom_button_background"
+                android:text="Edit"
+                android:textSize="12sp"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/profile_user_contact_no"
+                android:layout_width="250dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:hint="Contact No"
+                android:background="@drawable/custom_block_edittext_background"
+                android:padding="10dp"
+                android:enabled="false"
+                android:minHeight="48dp"
+                android:paddingBottom="8dp"
                 android:textSize="18sp"
                 android:typeface="monospace" />
 
             <Button
-                android:id="@+id/profile_update_button"
+                android:id="@+id/profile_user_contact_no_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:backgroundTint="@color/colorSuccess"
-                android:text="Update"
+                android:layout_marginLeft="20dp"
+                android:backgroundTint="@color/colorError"
+                android:drawableLeft="@drawable/ic_edit"
+                android:background="@drawable/custom_button_background"
+                android:text="Edit"
+                android:textSize="12sp"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/profile_user_state"
+                android:layout_marginTop="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_block_edittext_background"
+                android:padding="10dp"
+                android:hint="State"
+                android:minHeight="48dp"
+                android:paddingBottom="8dp"
+                android:textSize="18sp"
+                android:typeface="monospace"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/profile_user_state_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:drawableLeft="@drawable/ic_edit"
+                android:backgroundTint="@color/colorError"
+                android:background="@drawable/custom_button_background"
+                android:text="Edit"
+                android:textSize="12sp"
+                android:typeface="monospace" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/profile_user_city"
+                android:layout_marginTop="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_block_edittext_background"
+                android:padding="10dp"
+                android:hint="City"
+                android:enabled="false"
+                android:minHeight="48dp"
+                android:paddingBottom="8dp"
                 android:textSize="18sp"
                 android:typeface="monospace" />
+
+            <Button
+                android:id="@+id/profile_user_city_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:drawableLeft="@drawable/ic_edit"
+                android:backgroundTint="@color/colorError"
+                android:background="@drawable/custom_button_background"
+                android:text="Edit"
+                android:textSize="12sp"
+                android:typeface="monospace"/>
+
         </LinearLayout>
+
+    </GridLayout>
+
+
 
         <ProgressBar
             android:id="@+id/profile_progress_bar"
@@ -103,6 +177,6 @@
             android:progressTint="@color/colorSuccess"
             android:visibility="gone" />
 
-    </LinearLayout>
+
 
 </RelativeLayout>

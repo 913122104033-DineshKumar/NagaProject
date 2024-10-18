@@ -18,6 +18,7 @@ import retrofit2.Call;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -44,6 +45,14 @@ public interface ApiService {
     Call<IssueResponse> fetchPostByUserCity(@Body HashMap<String, String> map);
     @POST("issue/addVolunteerToIssue")
     Call<Void> addVolunteerToIssue(@Body HashMap<String, String> map);
-    @POST("issue/getUserDetailsForProfile")
+    @POST("auth/fetchUserDetailsForProfile")
     Call<ProfileModel> fetchUserDetailsForProfile(@Body HashMap<String, String> map);
+    @POST("updates/updateUserName")
+    Call<Void> updateUserName(@Body HashMap<String, String> map);
+    @POST("updates/updateUserContactNo")
+    Call<Void> updateUserContactNo(@Body HashMap<String, String> map);
+    @POST("updates/updateUserState")
+    Call<Void> updateUserState(@Body HashMap<String, String> map);
+    @POST("updates/updateUserCity")
+    Call<Void> updateUserCity(@Body HashMap<String, String> map);
 }

@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -8,16 +9,18 @@
         android:id="@+id/add_post_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@drawable/custom_toolbar_background"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:title="Add New Post" />
+        app:title="Add My Post"
+        app:titleTextColor="@color/colorSecondary"
+        app:titleMarginStart="110dp"/>
 
     <EditText
         android:id="@+id/post_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/custom_edittext_background"
         android:layout_marginBottom="8dp"
         android:hint="Enter Title"
         android:inputType="text"
@@ -30,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_edittext_background"
         android:hint="Enter Description"
         android:inputType="textMultiLine"
         android:typeface="serif"
@@ -40,6 +44,7 @@
         android:id="@+id/post_priority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_edittext_background"
         android:layout_marginBottom="8dp"
         android:hint="Priority"
         android:inputType="text"
@@ -51,6 +56,7 @@
         android:id="@+id/post_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_edittext_background"
         android:layout_marginBottom="8dp"
         android:hint="City"
         android:inputType="text"
@@ -63,6 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_edittext_background"
         android:hint="Area"
         android:inputType="text"
         android:minHeight="48dp"
@@ -74,6 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_button_background"
         android:text="Upload Image" />
 
     <LinearLayout
@@ -100,6 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:hint="Volunteers Needed"
+        android:background="@drawable/custom_edittext_background"
         android:inputType="number"
         android:minHeight="48dp"
         android:typeface="serif"
@@ -110,7 +119,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="?attr/colorPrimary"
+        android:background="@drawable/custom_button_background"
         android:text="Add Post"
         android:textColor="@android:color/white" />
 

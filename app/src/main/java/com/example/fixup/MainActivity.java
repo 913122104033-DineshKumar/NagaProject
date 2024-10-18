@@ -4,7 +4,11 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -64,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
                 );
             }
         });
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[] { Manifest.permission.POST_NOTIFICATIONS },
+                    1
+            );
+        }
         sessionManagerUtil = new SessionManagerUtil(this);
         listView = findViewById(R.id.issue_feed_list);
         progressBar = findViewById(R.id.home_progress_bar);

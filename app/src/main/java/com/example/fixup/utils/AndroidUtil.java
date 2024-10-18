@@ -21,7 +21,6 @@ public class AndroidUtil {
             @Override
             public void run() {
                 Intent intent = new Intent(from, to);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 from.startActivity(intent);
             }
         }, 1000);
@@ -34,7 +33,6 @@ public class AndroidUtil {
                 for(Map.Entry<String, String> entry: map.entrySet()) {
                     intent.putExtra(entry.getKey(), entry.getValue());
                 }
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 from.startActivity(intent);
             }
         }, 1000);
@@ -69,6 +67,16 @@ public class AndroidUtil {
             public void run() {
                 Intent intent = new Intent(from, to);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                from.startActivity(intent);
+            }
+        }, 1000);
+    }
+    public static void splashSwitchActivity(Context from, Class<?> to) {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(from, to);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 from.startActivity(intent);
             }
         }, 1000);

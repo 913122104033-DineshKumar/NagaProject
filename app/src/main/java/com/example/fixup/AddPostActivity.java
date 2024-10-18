@@ -6,12 +6,19 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.loader.content.CursorLoader;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -43,6 +50,10 @@ public class AddPostActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> pickImageLauncher;
     private SessionManagerUtil sessionManagerUtil;
     private Uri imageUri;
+    private static final String CHANNEL_ID = "issue_notification";
+    private static final String CHANNEL_NAME = "Issue Notification";
+    private static final String DESCRIPTION = "A channel for sending the issue notifications.";
+    private static final int IMPORTANCE = NotificationManager.IMPORTANCE_DEFAULT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +113,7 @@ public class AddPostActivity extends AppCompatActivity {
                         addPostButton,
                         false
                 );
-                apiCall();
+                addIssue();
             }
         });
     }
@@ -145,7 +156,7 @@ public class AddPostActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         pickImageLauncher.launch(Intent.createChooser(intent, "Select Issue Image"));
     }
-    private void apiCall() {
+    private void addIssue() {
         String issueTitle = title.getText().toString().trim();
         String issueDescription = description.getText().toString().trim();
         int issuePriority = Integer.parseInt(priority.getText().toString().trim());
@@ -270,4 +281,27 @@ public class AddPostActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+                ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED) {
+            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, IMPORTANCE);
+            notificationChannel.setDescription(DESCRIPTION);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(notificationChannel);
+        }
+    }
+//    private void sendNotifications() {
+//        Intent intent = new Intent(this, MainActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(
+//                this,
+//                0,
+//                intent,
+//                PendingIntent.FLAG_UPDATE_CURRENT
+//        );
+//
+//    }
 }

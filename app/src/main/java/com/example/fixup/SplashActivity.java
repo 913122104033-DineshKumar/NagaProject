@@ -15,12 +15,12 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         sessionManagerUtil = new SessionManagerUtil(this);
         if(!sessionManagerUtil.isLoggedIn()) {
-            AndroidUtil.switchActivity(
+            AndroidUtil.splashSwitchActivity(
                     this,
                     LoginActivity.class
             );
         } else {
-            AndroidUtil.switchActivity(
+            AndroidUtil.splashSwitchActivity(
                     this,
                     MainActivity.class
             );
