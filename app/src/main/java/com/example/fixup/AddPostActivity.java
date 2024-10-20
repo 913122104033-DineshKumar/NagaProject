@@ -17,6 +17,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,10 +31,14 @@ import android.widget.ProgressBar;
 
 import com.example.fixup.apicalls.ApiService;
 import com.example.fixup.apicalls.RetroFitClient;
+import com.example.fixup.apicalls.models.NotificationUserModel;
 import com.example.fixup.utils.AndroidUtil;
 import com.example.fixup.utils.SessionManagerUtil;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -188,20 +193,15 @@ public class AddPostActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                AndroidUtil.setProgressBarVisible(
-                        progressBar,
-                        false
-                );
-                AndroidUtil.setButtonEnabled(
-                        addPostButton,
-                        true
-                );
                 if(response.isSuccessful()) {
                     Log.d("AddPostActivity", "Response: " + response.toString());
                     clearAllEditText();
                     AndroidUtil.showToast(
                             getApplicationContext(),
                             "Issue added successfully"
+                    );
+                    sendNotificationToUsersByEmail(
+                            issueDescription
                     );
                 } else {
                     Log.e("AddPostActivity", "Response failed: " + response.message());
@@ -214,6 +214,52 @@ public class AddPostActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                AndroidUtil.showToast(
+                        getApplicationContext(),
+                        "Failed to add issue. Please try again later."
+                );
+                Log.e("Add Issue", "Error: ", t);
+            }
+        });
+    }
+    private void sendNotificationToUsersByEmail(String issueDescription) {
+        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url) + "/");
+        ApiService apiService = retrofit.create(ApiService.class);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("city", sessionManagerUtil.getCity());
+        Call<NotificationUserModel> call = apiService.sendNotificationToUsersByEmail(map);
+        call.enqueue(new Callback<NotificationUserModel>() {
+            @Override
+            public void onResponse(Call<NotificationUserModel> call, Response<NotificationUserModel> response) {
+                AndroidUtil.setProgressBarVisible(
+                        progressBar,
+                        false
+                );
+                AndroidUtil.setButtonEnabled(
+                        addPostButton,
+                        true
+                );
+                if (response.isSuccessful()) {
+                    AndroidUtil.showToast(
+                            getApplicationContext(),
+                            "Notification Send to the nearest Volunteers."
+                    );
+                } else {
+                    AndroidUtil.showToast(
+                            getApplicationContext(),
+                            "Error in Sending Notification."
+                    );
+                    try {
+                        int errorCode = response.code();
+                        String errorBody = response.errorBody().string();
+                        Log.e("NOTIFICATION_ERROR", "Error Code: " + errorCode + " ErrorBody: " + errorBody);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<NotificationUserModel> call, Throwable t) {
                 AndroidUtil.setProgressBarVisible(
                         progressBar,
                         false
@@ -224,9 +270,8 @@ public class AddPostActivity extends AppCompatActivity {
                 );
                 AndroidUtil.showToast(
                         getApplicationContext(),
-                        "Failed to add issue. Please try again later."
+                        "Request Failed"
                 );
-                Log.e("Add Issue", "Error: ", t);
             }
         });
     }
@@ -281,27 +326,4 @@ public class AddPostActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
-                ContextCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED) {
-            NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, IMPORTANCE);
-            notificationChannel.setDescription(DESCRIPTION);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(notificationChannel);
-        }
-    }
-//    private void sendNotifications() {
-//        Intent intent = new Intent(this, MainActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(
-//                this,
-//                0,
-//                intent,
-//                PendingIntent.FLAG_UPDATE_CURRENT
-//        );
-//
-//    }
 }

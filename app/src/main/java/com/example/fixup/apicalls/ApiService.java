@@ -2,10 +2,13 @@ package com.example.fixup.apicalls;
 
 import com.example.fixup.OtpVerificationActivity;
 import com.example.fixup.apicalls.models.LoginRequestModel;
+import com.example.fixup.apicalls.models.NotificationResponse;
+import com.example.fixup.apicalls.models.NotificationUserModel;
 import com.example.fixup.apicalls.models.OTPRequestModel;
 import com.example.fixup.models.Issue;
 import com.example.fixup.models.IssueDetailModel;
 import com.example.fixup.models.IssueResponse;
+import com.example.fixup.models.NotificationModel;
 import com.example.fixup.models.ProfileModel;
 import com.example.fixup.models.UserDetailsModel;
 
@@ -55,4 +58,8 @@ public interface ApiService {
     Call<Void> updateUserState(@Body HashMap<String, String> map);
     @POST("updates/updateUserCity")
     Call<Void> updateUserCity(@Body HashMap<String, String> map);
+    @POST("auth/sendNotificationToUsersByEmail")
+    Call<NotificationUserModel> sendNotificationToUsersByEmail(@Body HashMap<String, String> map);
+    @POST("notifications/fetchNotificationsByEmail")
+    Call<NotificationResponse> fetchNotifications(@Body HashMap<String, String> map);
 }

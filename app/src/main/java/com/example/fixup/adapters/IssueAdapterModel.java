@@ -47,15 +47,11 @@ public class IssueAdapterModel extends ArrayAdapter<Issue> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Log.d("IssueAdapterModel", "getView called for position: " + position);
         Issue issue = items.get(position);
-        Log.d("IssueAdapterModel", "Issue: " + issue.toString());
         if(convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mResource, parent, false);
         }
-        Log.d("IssueAdapterModel", "Issue Title: " + issue.getTitle());
-        Log.d("IssueAdapterModel", "Image URI: " + issue.getImageFilePath());
         ImageView imageView = convertView.findViewById(R.id.imageView);
         TextView textViewTitle = convertView.findViewById(R.id.textViewTitle);
         TextView textViewArea = convertView.findViewById(R.id.textViewArea);
@@ -69,7 +65,6 @@ public class IssueAdapterModel extends ArrayAdapter<Issue> {
         textViewCreatedTime.setText(issue.getCreatedAt());
         textViewContent.setText(issue.getDescription());
         String imageUri = issue.getImageFilePath();
-        Log.d("ImageURL", imageUri != null ? imageUri : "Image URI is null");
         imageUri = imageUri.replace("\\", "/");
         Glide.with(mContext)
                 .load("http://192.168.41.156:3000/" + imageUri)

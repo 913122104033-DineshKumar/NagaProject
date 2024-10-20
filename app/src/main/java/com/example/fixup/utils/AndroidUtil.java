@@ -1,6 +1,8 @@
 package com.example.fixup.utils;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,11 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
+
+import com.example.fixup.MainActivity;
+import com.example.fixup.R;
+
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class AndroidUtil {
+    private static int NOTIFICATION_ID = 1;
     public static void showToast(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
@@ -66,7 +75,7 @@ public class AndroidUtil {
             @Override
             public void run() {
                 Intent intent = new Intent(from, to);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 from.startActivity(intent);
             }
         }, 1000);
