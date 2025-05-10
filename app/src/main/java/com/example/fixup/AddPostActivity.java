@@ -168,7 +168,7 @@ public class AddPostActivity extends AppCompatActivity {
         String issueCity = city.getText().toString().trim();
         String issueArea = area.getText().toString().trim();
         int issueVolunteersNeeded = Integer.parseInt(volunteersNeeded.getText().toString().trim());
-        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url) + "/");
+        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url));
         ApiService apiService = retrofit.create(ApiService.class);
         File file = new File(getRealPathFromUri(imageUri));
         RequestBody requestFile = RequestBody.create(MediaType.parse("/image/*"), file);

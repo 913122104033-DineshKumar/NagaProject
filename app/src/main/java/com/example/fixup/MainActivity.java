@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchIssueByCity() {
-        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url) + "/");
+        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url));
         ApiService apiService = retrofit.create(ApiService.class);
         String city = sessionManagerUtil.getCity();
         HashMap<String, String> map = new HashMap<>();

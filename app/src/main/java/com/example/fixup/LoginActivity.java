@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar,
                 true
         );
-        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url) + "/");
+        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url) );
         ApiService apiService = retrofit.create(ApiService.class);
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("email", email);
@@ -140,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                         "Request Failed"
 
                 );
+                Log.e("LoginError", "Request Failed", t);
             }
         });
     }

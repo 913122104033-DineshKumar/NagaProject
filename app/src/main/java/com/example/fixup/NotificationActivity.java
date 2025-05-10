@@ -76,7 +76,7 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void fetchNotifications() {
-        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url) + "/");
+        Retrofit retrofit = RetroFitClient.getClient(getString(R.string.base_url));
         ApiService apiService = retrofit.create(ApiService.class);
         HashMap<String, String> map = new HashMap<>();
         map.put("email", sessionManagerUtil.getEmail());

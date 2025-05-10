@@ -63,7 +63,7 @@ public class SignUpActivity extends AppCompatActivity {
                     map.put("password", password);
                     AndroidUtil.showToast(
                             this,
-                            "Redirecting to UTP Verification"
+                            "Redirecting to OTP Verification"
                     );
                     AndroidUtil.switchActivityWithExtras(
                             this,

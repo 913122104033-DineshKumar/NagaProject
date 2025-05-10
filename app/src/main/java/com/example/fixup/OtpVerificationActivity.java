@@ -74,7 +74,7 @@ public class OtpVerificationActivity extends AppCompatActivity {
                 progressBar,
                 true
         );
-        Retrofit retrofit = RetroFitClient.getClient(base_uri + "/");
+        Retrofit retrofit = RetroFitClient.getClient(base_uri);
         ApiService apiService = retrofit.create(ApiService.class);
         HashMap<String, String> map = new HashMap<>();
         map.put("email", email);
@@ -146,7 +146,7 @@ public class OtpVerificationActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        Retrofit retrofit = RetroFitClient.getClient(base_uri + "/");
+        Retrofit retrofit = RetroFitClient.getClient(base_uri);
         ApiService apiService = retrofit.create(ApiService.class);
         HashMap<String, String> map = new HashMap<>();
         map.put("name", name);

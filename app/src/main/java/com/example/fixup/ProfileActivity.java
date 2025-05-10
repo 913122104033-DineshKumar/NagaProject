@@ -340,7 +340,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void fetchUserDetails(String email) {
-        Retrofit retrofit = RetroFitClient.getClient(this.getString(R.string.base_url) + "/");
+        Retrofit retrofit = RetroFitClient.getClient(this.getString(R.string.base_url));
         ApiService apiService = retrofit.create(ApiService.class);
         HashMap<String, String> map  = new HashMap<>();
         map.put("email", email);
